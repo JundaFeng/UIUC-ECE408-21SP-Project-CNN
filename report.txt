@@ -1,0 +1,25 @@
+1. Show output of rai running Mini-DNN on the CPU (CPU convolution implemented) for batch size of 10k images
+
+Test batch size: 10000
+Loading fashion-mnist data...Done
+Loading model...Done
+Conv-CPU==
+Op Time: 79464.3 ms
+Conv-CPU==
+Op Time: 230304 ms
+Test Accuracy: 0.8714
+real	6m40.644s
+user	6m39.668s
+sys	0m0.968s
+
+
+
+2. List Op Times (CPU convolution implemented) for batch size of 10k images
+79464.3+230304 = 309768.3 ms
+3. List whole program execution time (CPU convolution implemented) for batch size of 10k images
+6m39.668s
+4. Show percentage of total execution time of your program spent in your forward pass function with gprof.
+83.83 percents
+
+GProf output:
+83.83    322.41   322.41        2   161.21   161.21  conv_forward_cpu(float*, float const*, float const*, int, int, int, int, int, int)

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>readme.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="ece408cs483-final-project">ECE408/CS483 Final Project</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This is the skeleton code for the Spring 2021 ECE408 / CS483 / CSE408 course project.</p>
+<p>In this final project, you will be implementing and optimizing the forward-pass of a convolutional layer using CUDA. Convolutional layers are the primary building blocks of convolutional neural networks (CNNs), which are used in many machine learning tasks like image classification, object detection, natural language processing, and recommendation systems. In general, CNNs work well on tasks where the data/input features have some level of spatial relationship.</p>
+<p>You will be working with a <strong>modified</strong> version of the LeNet-5 architecture shown below.</p>
+<p><img src="https://lh5.googleusercontent.com/84RlneM7JSDYDirUr_ceplL4G3-Peyq5dkLJTe2f-3Bj9KuWZjsH2A9Qq5PO5BRLrVfWGPnI3eQu8RkTPgyeUf9ZOWY9JbptVJy9LceAyHRn-O0kbzprx88yb82a5dnCR7EDP7n0" alt="LenetImage"></p>
+<p><em>Source: http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf</em></p>
+<p>Your optimized CUDA implementation of the convolutional layer will be used to perform inference for layers C1 and C3 (shown in red) in the figure above. We will be leveraging the <a href="https://github.com/iamhankai/mini-dnn-cpp">mini-dnn-cpp</a> (Mini-DNN) framework for implementing the modified LeNet-5.</p>
+<p>We will be using the <a href="https://github.com/zalandoresearch/fashion-mnist">Fashion MNIST dataset</a>, where the inputs to the network will be a batch of 10,000 single channel images, each with dimensions of 86 x 86 pixels. The output layer consists of 10 nodes, where each node represents the likelihood of the input belonging to one of the 10 classes (T-shirt, dress, sneaker, boot etc.)</p>
+<p>The overall learning objectives for this project are:</p>
+<ul>
+<li>Demonstrating command of CUDA and optimization approaches by designing and implementing an optimized neural-network convolutional layer forward pass</li>
+<li>Obtaining practical experience in analyzing and fine tuning CUDA kernels through the use of profiling tools like Nsight Systems (<code>nsys</code>) and Nsight-Compute (<code>nv-nsight-cu</code>)</li>
+</ul>
+<p>You will be working on this project individually.</p>
+<p><em>You are expected to adhere to University of Illinois academic integrity standards. Do not attempt to subvert any of the performance-measurement aspects of the final project. If you are unsure about whether something does not meet those guidelines, ask a member of the teaching staff.</em></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#milestone-1-rai-installation-cpu-convolution-profiling">Milestone 1: Rai Installation, CPU Convolution, Profiling</a></li>
+<li><a href="#milestone-2-baseline-convolutional-kernel">Milestone 2: Baseline Convolutional Kernel</a></li>
+<li><a href="#milestone-3-three-optimizations">Milestone 3: Three Optimizations</a></li>
+<li><a href="#final-submission">Final Submission</a></li>
+<li><a href="#final-report">Final Report</a></li>
+<li><a href="#rubric">Rubric</a></li>
+</ul>
+<h2 id="milestone-1-rai-installation-cpu-convolution-profiling">Milestone 1: Rai Installation, CPU convolution, Profiling</h2>
+<p><em><strong>Deadline: March 19th, 8 PM CST</strong></em></p>
+<p>For each milestone, you will include a PDF <code>report.pdf</code> in the project directory you submit with rai (though we ask you to submit a TXT <code>report.txt</code> for this milestone).
+This report should contain all of the deliverables.
+This report should contain your name and netid.</p>
+<table>
+<thead>
+<tr>
+<th>Deliverables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create a CPU convolution implementation</td>
+</tr>
+<tr>
+<td>Profile your implementation with <code>gprof</code></td>
+</tr>
+<tr>
+<td>Write your report</td>
+</tr>
+<tr>
+<td>Use <code>rai -p &lt;project folder&gt; --queue rai_amd64_ece408 --submit=m1</code> to mark your job for grading</td>
+</tr>
+</tbody>
+</table>
+<p>Clone this repository to get the project folder.</p>
+<pre><code>git clone -b 2021sp https://github.com/illinois-impact/ece408_project.git
+</code></pre>
+<p>Download the rai binary for your platform from <a href="https://drive.google.com/drive/folders/1Pp84x3So9OEHUwRHQVZcRP441wRsO-UV">here</a>.
+You will probably use it for development, and definitely use it for submission. After downloading the rai binary, rename it to <code>rai</code> so that it is consistent with the instructions in this document. Also give <code>rai</code> execute permission by running in the folder you placed it.</p>
+<pre><code>chmod +x rai
+</code></pre>
+<p>Note that you will have to run <code>rai</code> from wherever you placed it in your filesystem. For e.g., if you are running it from the same directory it is placed, run</p>
+<pre><code>./rai
+</code></pre>
+<p>You should have received a <code>.rai_profile</code> file by email.
+Put that file in <code>~/.rai_profile</code> (Linux/macOS).
+Your <code>.rai_profile</code> should look something like this (indented with space!)</p>
+<pre><code>profile:
+    firstname: &lt;your-given-name&gt;
+    lastname: &lt;your-surname&gt;
+    username: &lt;your-netid&gt;
+    email: &lt;your-institution-email&gt;
+    access_key: &lt;your-access-key&gt;
+    secret_key: &lt;your-secret-key&gt;
+    affiliation: uiuc
+    role: ece408
+        team: &lt;your-netid&gt;
+</code></pre>
+<p>Some more info is available on the <a href="https://github.com/rai-project/rai">Client Documentation Page</a>.</p>
+<h3 id="testing-rai">Testing Rai</h3>
+<p>Run the default Mini-DNN forward pass using rai without any CPU/GPU implementation.</p>
+<p>Use RAI to run a batch forward pass on some test data.</p>
+<pre><code>rai -p &lt;project-folder&gt; --queue rai_amd64_ece408
+</code></pre>
+<p>Note that the <code>&lt;project-folder&gt;</code> path should point to the root of this repository.</p>
+<p>This will upload your project directory to rai and move it to <code>/src</code>, where the execution specified in <code>rai_build.yml</code> will occur.</p>
+<p><em><strong>Understanding rai_build.yml</strong></em></p>
+<p>The <code>image:</code> key specifies the environment that the rest of the execution will occur in.
+This environment includes the Mini-DNN framework as well as the model definition and pre-trained weights that will be used to do inference. <strong>(Do not modify this entry)</strong></p>
+<p>The <code>resources:</code> key specifies what computation resources will be available to the execution. <strong>(Do not modify this entry)</strong></p>
+<p>The <code>commands:</code> key specifies the recipe that rai will execute. First, the project files are copied to the <code>/build/student_code</code> directory so that we have a record of your code along with your performance.
+Then the files in <code>custom</code> are copied to <code>/ece408/project/src/layer/custom</code> in the Mini-DNN source tree and the pretrained weights are copied to <code>/build</code>. Finally, Mini-DNN is recompiled with your custom code.</p>
+<p><code>./m1 100</code> runs the code specified in <code>m1.cc</code> program for a batch of 100 input images.</p>
+<p>You should see the following output:</p>
+<pre><code>✱ Running /bin/bash -c &quot;./m1 100&quot;
+Test batch size: 100
+Loading fashion-mnist data...Done
+Loading model...Done
+Conv-CPU==
+Op Time: 0.000655 ms
+Conv-CPU==
+Op Time: 0.000246 ms
+Test Accuracy: 0.08
+</code></pre>
+<p>It is okay for the accuracy is low here since you haven't implemented the convolutional layers yet.</p>
+<p>Modify <code>rai_build.yml</code> to use <code>time</code> to measure the elapsed time of the whole program.</p>
+<pre><code>- /bin/bash -c &quot;time ./m1 100&quot;
+</code></pre>
+<h3 id="create-a-cpu-implementation">Create a CPU Implementation</h3>
+<p>See the <a href="#skeleton-code-description">description</a> of the skeleton code for a brief overview of what each file does.</p>
+<p>Modify <code>custom/cpu-new-forward.cc</code> to implement the forward convolution described in Chapter 16 of the textbook.
+The performance of the CPU convolution is not part of the project evaluation. We only evaluate for correctness.</p>
+<p>The algorithm is also below, for your convenience</p>
+<pre><code>for b = 0 .. B                     // for each image in the batch 
+    for m = 0 .. M                 // for each output feature maps
+        for h = 0 .. H_out         // for each output element
+            for w = 0 .. W_out
+            {
+                y[b][m][h][w] = 0;
+                for c = 0 .. C     // sum over all input feature maps
+                    for p = 0 .. K // KxK filter
+                        for q = 0 .. K
+                            y[b][m][h][w] += x[b][c][h + p][w + q] * k[m][c][p][q]
+            }
+</code></pre>
+<p>Unlike the convolutions described in the class, note that this one is not centered on the input image. There is no padding and the strides are 1. The following illustration may help you visualize this better.</p>
+<p><img src="https://stanford.edu/~shervine/teaching/cs-230/illustrations/convolution-layer-a.png?1c517e00cb8d709baf32fc3d39ebae67" alt="ConvExample"></p>
+<p><em>Source: https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-convolutional-neural-networks#layer</em></p>
+<p>Modify <code>rai_build.yml</code> to invoke</p>
+<pre><code>- /bin/bash -c &quot;./m1&quot;
+</code></pre>
+<p>Please be patient as the CPU implementation with 10k images is slow. A correct implementation may take around 6-7 mins to run. If you want to iterate quickly when developing code using smaller batch sizes, see <a href="#specifying-batch-size">Specifying Batch Size</a>. When your implementation is correct, you should see output like this:</p>
+<pre><code>Test batch size: 10000
+Loading fashion-mnist data...Done
+Loading model...Done
+Conv-CPU==
+Op Time: 74253.3 ms
+Conv-CPU==
+Op Time: 213714 ms
+Test Accuracy: 0.8714
+</code></pre>
+<p>Every time your layer is invoked, it will print the &quot;Op Time,&quot; the time spent working on that layer.
+Since the network has two convolutional layers, two times will be printed.
+You can time the whole program execution by modifying <code>rai_build.yml</code> with</p>
+<pre><code>- /bin/bash -c &quot;time ./m1&quot;
+</code></pre>
+<h3 id="specifying-batch-size">Specifying Batch Size</h3>
+<p><code>./m1</code>, <code>./m2</code>, <code>./m3</code> and <code>./final</code> all take one optional argument: the dataset size.<br>
+If the correctness for each possible batch size is as below, you can be reasonably confident your implementation is right. The correctness does depend on the data size.</p>
+<p>For example, to check your accuracy on the full data size of 10,000, you could modify <code>rai_build.yml</code> to run</p>
+<pre><code>- /bin/bash -c &quot;./m1 10000&quot;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Number of Images</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>0.86</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>0.886</td>
+</tr>
+<tr>
+<td>10000 (default)</td>
+<td>0.8714</td>
+</tr>
+</tbody>
+</table>
+<h3 id="use-gprof-to-profile-your-cpu-implementation">Use Gprof to profile your CPU implementation</h3>
+<p>You will use <code>gprof</code> to profile the execution of your CPU forward convolution implementation.</p>
+<p>We compile and link your <code>cpu-new-forward.cc</code> with the <code>-pg</code> flag, which creates a <code>gmon.out</code> artifact containing profile information when the binary <code>m1</code> is executed.  To analyze this information in human readable form, modify <code>rai_build.yml</code> and add the line</p>
+<pre><code>- /bin/bash -c &quot;gprof -Q m1 gmon.out&quot;
+</code></pre>
+<p>By default, <code>gprof</code> prints both a flat profile and a call graph (see &quot;Interpreting gprof's Output&quot; in the <a href="https://sourceware.org/binutils/docs/gprof/index.html">GNU gprof Documentation</a>).  With the <code>-Q</code> flag, we only print the flat profile.  The information you need should be near the beginning of <code>gprof</code>'s output, so you can pipe the output to <code>grep</code> (with your function's name) or <code>head</code> to find the information you need.</p>
+<p>The provided <code>m1.cc</code> is identical to the one used by <code>--submit=m1</code>.  For this milestone, submit a text file <code>report.txt</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Show output of rai running Mini-DNN on the CPU (CPU convolution implemented) for batch size of 10k images</td>
+</tr>
+<tr>
+<td>List Op Times (CPU convolution implemented) for batch size of 10k images</td>
+</tr>
+<tr>
+<td>List whole program execution time (CPU convolution implemented) for batch size of 10k images</td>
+</tr>
+<tr>
+<td>Show percentage of total execution time of your program spent in your forward pass function with <code>gprof</code></td>
+</tr>
+</tbody>
+</table>
+<p>Use</p>
+<pre><code>rai -p &lt;project folder&gt; --queue rai_amd64_ece408 --submit=m1
+</code></pre>
+<p>to mark your submission for grading. Make sure to include your <code>report.txt</code> in your <code>&lt;project folder&gt;</code>.  Make sure you include all items listed above for this milestone.</p>
+<h2 id="milestone-2-baseline-convolutional-kernel">Milestone 2: Baseline Convolutional Kernel</h2>
+<p><em><strong>Deadline: April 9th, 8 PM CST</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Deliverables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Everything from Milestone 1</td>
+</tr>
+<tr>
+<td>Implement a GPU Convolution</td>
+</tr>
+<tr>
+<td>Correctness and timing with 3 different dataset sizes</td>
+</tr>
+<tr>
+<td>Write your report</td>
+</tr>
+<tr>
+<td>Use <code>rai -p &lt;project folder&gt; --queue rai_amd64_ece408 --submit=m2</code> to mark your job for grading</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-a-gpu-implementation">Create a GPU Implementation</h3>
+<p>Modify <code>custom/new-forward.cu</code> to create GPU implementation of the forward convolution.</p>
+<p>Modify <code>rai_build.yml</code> to run</p>
+<pre><code>- /bin/bash -c &quot;./m2&quot;
+</code></pre>
+<p>to use your GPU implementation.
+When it is correct, it will show the same correctness as Milestone 1. To quicken development time, <code>m2.cc</code> takes one optional argument: the dataset size. See <a href="#specifying-batch-size">Specifying Batch Size</a>.</p>
+<h3 id="use-nsight-systems-and-nsight-compute-for-initial-performance-results">Use Nsight-Systems and Nsight-Compute for initial Performance Results</h3>
+<p>First, ensure you are using correct image in rai_build.yml file</p>
+<p><code>image: jnativ/ece408_minidnn_docker_sp21:latest</code></p>
+<p><strong>Before you do any profiling, make sure you do not have any memory errors by running <code>cuda-memcheck</code>. See <a href="#checking-for-errors">Checking for Errors</a> on how to run this.</strong></p>
+<p><em><strong>System level profiling using Nsight-Systems</strong></em></p>
+<p>We will learn how to use <code>nsys</code> (Nsight Systems) to profile the execution at the application level.</p>
+<p>Once you've gotten the appropriate accuracy results, generate a profile using <code>nsys</code>. Make sure <code>rai_build.yml</code> is configured for a GPU run. Then, modify <code>rai_build.yml</code> to generate a profile instead of just executing the code.</p>
+<pre><code>- nsys profile --stats=true ./m2
+</code></pre>
+<p>You should see something that looks like the following (but not identical):</p>
+<pre class="hljs"><code><div>Collecting data...
+Test batch size: 10000
+Loading fashion-mnist data...Done
+Loading model...Done
+...
+Generating CUDA API Statistics...
+CUDA API Statistics (nanoseconds)
+
+Time(%)  Total Time  Calls      Average   Minimum    Maximum  Name            
+-------  ----------  -----  -----------  --------  ---------  ----------------
+   72.3   294859478      2  147429739.0    675112  294184366  cudaMalloc      
+   22.8    92865680      2   46432840.0  44841150   48024530  cudaMemcpy      
+    4.5    18405301      2    9202650.5     25789   18379512  cudaLaunchKernel
+    0.4     1467989      2     733994.5    473054     994935  cudaFree
+Generating CUDA Kernel Statistics...
+
+Generating CUDA Memory Operation Statistics...
+CUDA Kernel Statistics (nanoseconds)
+
+Time(%)  Total Time   Instances  Average  Minimum    Maximum  Name                
+-------  ----------  ----------  -------  -------  ---------  --------------------
+  100.0        3360           2   1680.0     1664       1696  conv_forward_kernel 
+
+
+CUDA Memory Operation Statistics (nanoseconds)
+
+Time(%)  Total Time  Operations     Average   Minimum   Maximum  Name              
+-------  ----------  ----------  ----------  --------  --------  ------------------
+  100.0    89602913           2  44801456.5  41565528  48037385  [CUDA memcpy HtoD]
+
+
+CUDA Memory Operation Statistics (KiB)
+
+   Total  Operations   Average     Minimum   Maximum  Name              
+--------  ----------  --------  ----------  --------  ------------------
+538906.0           2  269453.0  250000.000  288906.0  [CUDA memcpy HtoD]
+
+</div></code></pre>
+<p>The CUDA API Statistics section shows the CUDA API calls that are executed. The CUDA Kernel Statistics lists all the kernels that were executed during the profiling session. There are also more details on the CUDA memory operations (CudaMemcpy) listed.
+There are columns corresponding to percentage of time consumed, total time, number of calls, and average/min/max time of those calls. Answer the questions stated in the deliverables using <strong>your</strong> <code>nsys</code> profiling result in the report as well as the <code>nsys</code> output corresponding to the section shown above.</p>
+<p>Think about the distinction between a CUDA API call and a kernel launch, and describe it briefly in your report.
+The CUDA documentation describes <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#kernels">kernels</a> and the <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-interface">programming interface</a>.</p>
+<p>You can find more information about <code>nsys</code> in the <a href="https://docs.nvidia.com/nsight-systems/UserGuide/#cli-profiling">Nsight Systems Documentation</a></p>
+<p><em><strong>Kernel level profiling using Nsight-Compute</strong></em></p>
+<p>Nsight-Systems does not give you detailed kernel level performance metrics. For that, we will need to use <code>nv-nsight-cu-cli</code> (Nsight-Compute).</p>
+<p>Modify <code>rai_build.yml</code> to use <code>nv-nsight-cu-cli</code> to save some timeline and analysis information, as described in <a href="#profiling">profiling</a>.
+Use the NVIDIA Nsight Compute GUI to find the execution of your kernel, and show a screen shot of the GPU SOL utilization in your report.
+The <a href="#nsight-compute-installation">Nsight Compute installation</a> section describes how to install Nsight-Compute GUI on your personal machine. Note that you do not need CUDA to be installed.</p>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Show output of rai running your GPU implementation of convolution (including the OpTimes)</td>
+</tr>
+<tr>
+<td>Demonstrate <code>nsys</code> profiling the GPU execution</td>
+</tr>
+<tr>
+<td>Include a list of all kernels that collectively consume more than 90% of the program time.</td>
+</tr>
+<tr>
+<td>Include a list of all CUDA API calls that collectively consume more than 90% of the program time.</td>
+</tr>
+<tr>
+<td>Include an explanation of the difference between kernels and API calls</td>
+</tr>
+<tr>
+<td>Screenshot of the GPU SOL utilization in Nsight-Compute GUI for your kernel profiling data</td>
+</tr>
+</tbody>
+</table>
+<p>Use</p>
+<pre><code>rai -p &lt;project folder&gt; --queue rai_amd64_ece408 --submit=m2
+</code></pre>
+<p>to mark your submission for grading. Make sure to include your <code>report.pdf</code> in your <code>&lt;project folder&gt;</code>. Make sure you include all items listed in the Deliverables for this milestone.</p>
+<h2 id="milestone-3-three-optimizations">Milestone 3: Three Optimizations</h2>
+<p><em><strong>Deadline: April 30th, 8 PM CST</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Deliverables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Everything from Milestone 2</td>
+</tr>
+<tr>
+<td>Implement three GPU optimizations</td>
+</tr>
+<tr>
+<td>Write your report</td>
+</tr>
+<tr>
+<td>Use <code>rai -p &lt;project folder&gt; --queue rai_amd64_ece408 --submit=m3</code> to mark your job for grading</td>
+</tr>
+</tbody>
+</table>
+<h3 id="interpreting-the-timing-output-from-rai">Interpreting the timing output from rai</h3>
+<p>You will see three types of times reported per layer as follows</p>
+<pre><code>✱ Running bin/bash -c &quot;./m3 1000&quot;   \\ Output will appear after run is complete.
+Test batch size: 1000
+Loading fashion-mnist data...Done
+Loading model...Done
+Conv-GPU==
+Conv-GPU==
+
+Test Accuracy: 0.886
+--------------------------------
+-           TIMINGS
+--------------------------------
+Layer 1 GPUTime: 4.862905 ms
+Layer 1 OpTime: 4.882009 ms
+Layer 1 LayerTime: 63.512461 ms
+Layer 2 GPUTime: 16.523901 ms
+Layer 2 OpTime: 16.544541 ms
+Layer 2 LayerTime: 59.37215 ms
+</code></pre>
+<ol>
+<li>GPUTime - This is the total time your kernel code takes to execute on the GPU. It does not include any CUDA API calls</li>
+<li>OpTime - This is time between the last cudaMemcpy call before your first kernel call and the first cudaMemcpy after your last kernel call in <code>new-forward.cu -&gt; conv_forward_gpu()</code>. It does not include the cudaMemcpy times. <strong>This is the time that will be used for rankings</strong></li>
+<li>LayerTime - This is the total time taken to execute <code>new-forward.cu -&gt; conv_forward_gpu()</code>. It includes all the times for all kernel and CUDA API calls as well as the CPU time to run <code>conv_forward_gpu()</code>.</li>
+</ol>
+<p><em>Note: We will check that GPUTime &lt; OpTime &lt; LayerTime and that the GPUTime and OpTime should be similar. Also LayerTime should not differ from OpTime by more than 1000 ms.</em></p>
+<h3 id="add-three-gpu-optimization">Add three GPU Optimization</h3>
+<p>For this milestone, you should attempt at least three GPU optimizations (see <a href="#optimizations">optimizations</a>).</p>
+<p>Describe the optimizations in your <code>report.pdf</code>. Read the <a href="#final-report">Final Report</a> section to see what is expected for the description of each optimization.</p>
+<h3 id="performance-analysis-with-nsight-systems-and-nsight-compute">Performance Analysis with Nsight-Systems and Nsight-Compute</h3>
+<p>Use the NVIDIA Nsight-Systems(<code>nsys</code>) and Nsight-Compute(<code>nv-nsight-cu-cli</code>) and your analysis information to describe the effect that your optimizations had on the performance of your convolution.
+If possible, you should try to separate the effect of each optimization in your analysis.</p>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Describe the optimizations as specified <a href="#final-report">here</a></td>
+</tr>
+<tr>
+<td>Use data from <code>nsys</code> and/or <code>nv-nsight-cu-cli</code> to analyze your optimizations and justify the effects of your optimizations</td>
+</tr>
+</tbody>
+</table>
+<p>Use</p>
+<pre><code>rai -p &lt;project folder&gt; --queue rai_amd64_ece408 --submit=m3
+</code></pre>
+<p>to submit your project folder. Make sure to include your <code>report.pdf</code> in your <code>&lt;project folder&gt;</code>. Make sure you include all items listed in the Deliverables for this milestone.</p>
+<h2 id="final-submission">Final Submission</h2>
+<p><em><strong>Deadline: May 14th, 8 PM CST</strong></em></p>
+<table>
+<thead>
+<tr>
+<th>Deliverables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Everything from Milestone 3</td>
+</tr>
+<tr>
+<td>Implement final GPU optimizations  (total of 6)</td>
+</tr>
+<tr>
+<td>Write your report</td>
+</tr>
+<tr>
+<td>Use <code>rai -p &lt;project folder&gt; --queue rai_amd64_ece408 --submit=final</code> to mark your job for grading</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optimized-layer">Optimized Layer</h3>
+<p>Optimize your GPU convolution (see <a href="#optimizations">optimizations</a>).</p>
+<p>Your implementation must work with <code>rai -p &lt;project-folder&gt; --queue rai_amd64_ece408 --submit=final</code>.
+This means all your source files must be in <code>custom/</code>, and your implementation must work when they are copied to <code>/ece408/project/src/layer/custom</code> in the Mini-DNN tree, and <code>make</code> is invoked on the Mini-DNN tree. This is done in the provided <code>rai_build.yml</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Describe the optimizations as specified <a href="#final-report">here</a></td>
+</tr>
+<tr>
+<td>Use <code>nsys</code> and/or <code>nv-nsight-cu-cli</code> to justify the effects of your optimiatization on performance</td>
+</tr>
+</tbody>
+</table>
+<p>Use</p>
+<pre><code>rai -p &lt;project folder&gt; --queue rai_amd64_ece408 --submit=final
+</code></pre>
+<p>to submit your project folder. Make sure to include your <code>report.pdf</code> in your <code>&lt;project folder&gt;</code>.</p>
+<h3 id="final-report">Final Report</h3>
+<p>You've been building this final report through all the milestones.
+Keep the content from the earlier milestones, but be sure to include the following:</p>
+<ul>
+<li>Your name</li>
+<li>Your netid</li>
+</ul>
+<p>The final report should include at least the following information for each optimization</p>
+<ol>
+<li><strong>Optimization Approach and Results</strong>
+<ul>
+<li>how you identified the optimization opportunity</li>
+<li>why you thought the approach would be fruitful</li>
+<li>the effect of the optimization. was it fruitful, and why or why not. Use <code>nsys</code> and <code>nv-nsight-cu</code> to justify your explanation.</li>
+<li>Any external references used during identification or development of the optimization</li>
+</ul>
+</li>
+<li><strong>References</strong> (as needed)</li>
+<li><strong>(Optional) Suggestions for Improving Next Year</strong></li>
+</ol>
+<h3 id="rubric">Rubric</h3>
+<p>The overall project score will be computed as follows:</p>
+<ol>
+<li>Milestone 1 ( 20% )</li>
+<li>Milestone 2 ( 20% )</li>
+<li>Milestone 3 ( 40% )
+<ul>
+<li>Optimization 1 ( 13.3% )</li>
+<li>Optimization 2 ( 13.3% )</li>
+<li>Optimization 3 ( 13.3% )</li>
+</ul>
+</li>
+<li>Final Optimizations ( 20% )
+<ul>
+<li>Optimization 4 ( 6.6% )</li>
+<li>Optimization 5 ( 6.6% )</li>
+<li>Optimization 6 ( 6.6% )</li>
+<li>Additional Optimizations ( +2% extra each! )</li>
+</ul>
+</li>
+</ol>
+<p>Each optimization will be graded as follows:</p>
+<ol>
+<li>Explanation of Performance Impact ( 40% )</li>
+<li>Correctness ( 60% )</li>
+</ol>
+<p><em>Note: In order to receive an extra 2% counting toward the overall project score for an optimization beyond the six required optimizations, the optimization must result in a faster runtime.</em></p>
+<p>This semester, ranking will be made available, via the <code>rai ranking</code> command, but will not be assigned a grade.</p>
+<h2 id="optimizations">Optimizations</h2>
+<p>We are going to suggest a set of possible optimizations for you to attempt.</p>
+<ul>
+<li>Unroll + shared-memory Matrix multiply</li>
+<li>Shared Memory convolution</li>
+<li>Kernel fusion for unrolling and matrix-multiplication</li>
+<li>Weight matrix (kernel values) in constant memory</li>
+<li>Tuning with restrict and loop unrolling (considered as one optimization only if you do both)</li>
+<li>An advanced matrix multiplication algorithm (register-tiled, for example)</li>
+<li>Sweeping various parameters to find best values (block sizes, amount of thread coarsening)</li>
+<li>Exploiting parallelism in input images, input channels, and output channels.</li>
+<li>Multiple kernel implementations for different layer sizes</li>
+<li>Input channel reduction: tree</li>
+<li>Input channel reduction: atomics</li>
+<li>Fixed point (FP16) arithmetic</li>
+<li>Using Tensor Cores to speed up matrix multiplication</li>
+<li>...</li>
+</ul>
+<p>Other optimizations that do not fit in here may also be considered as optimizations.
+If in doubt, contact the course staff.</p>
+<h3 id="checking-for-errors">Checking for Errors</h3>
+<p>Within <code>custom/new-forward.cu</code>, you can use the predefined error handling code to catch CUDA errors or, you can define a macro/function similar to <code>wbCheck</code> used in WebGPU.</p>
+<p>To catch memory errors, prepend your command with <code>cuda-memcheck</code></p>
+<pre><code>- /bin/bash -c &quot;cuda-memcheck ./m3&quot;
+</code></pre>
+<h3 id="profiling">Profiling</h3>
+<p>You can gather system level performance information using <code>nsys</code>.</p>
+<p>For detailed kernel level GPU profiling, use <code>nv-nsight-cu-cli</code> and view that information with <code>nv-nsight-cu</code>.</p>
+<p>You can see some simple information like so (as we did in milestone 3):</p>
+<pre><code>nsys profile --stats=true &lt;your command here&gt;
+</code></pre>
+<p>You can additionally gather some detailed kernel level performance metrics.</p>
+<pre><code>nv-nsight-cu-cli --section '.*' -o analysis_file &lt;your command here&gt;
+</code></pre>
+<p>This will generate <code>analysis_file.ncu-rep</code>.
+<code>--section '.*'</code> may significantly slow the run time since it is profiling all the metrics. You may wish to modify the command to run on smaller datasets during this profiling.</p>
+<p>You will need to follow the link rai prints after the execution to retrieve these files.
+You can use the NVIDIA Nsight Compute GUI (<code>nv-nsight-cu</code>) to import those files.
+You will need to install NVIDIA NSight Compute on your own machine. It can be downloaded as a standalone application. See instructions <a href="#nsight-compute-installation">here</a></p>
+<p>To import the files:</p>
+<ul>
+<li>Launch the GUI <code>/usr/local/NVIDIA-Nsight-Compute/nv-nsight-cu</code> (or from wherever you installed it)</li>
+<li>Close the intial Quick Launch menu</li>
+<li>Go to File &gt; Open File and select the <code>.ncu-rep</code> file from the <code>\build</code> folder you downloaded from rai (note that the downloaded file is a <code>TAR</code> file, not a <code>TAR.GZ</code> as the name implies).</li>
+</ul>
+<p><em>OR</em></p>
+<ul>
+<li>Directly launch from the terminal <code>/usr/local/NVIDIA-Nsight-Compute/nv-nsight-cu &lt;filename&gt;.ncu-rep</code></li>
+</ul>
+<p>For a high-level overview of the Nsight software, visit <a href="https://developer.nvidia.com/tools-overview">here</a>.</p>
+<h3 id="nsight-compute-installation">Nsight-compute Installation</h3>
+<p>Nsight-Compute can be installed as a standalone application. You do not need CUDA to be installed. You can download the installer from NVIDIA's <a href="https://developer.nvidia.com/gameworksdownload#?dn=nsight-compute-2020-3-0">website</a></p>
+<h3 id="skeleton-code-description">Skeleton Code Description</h3>
+<p><code>custom/cpu-new-forward.cc</code> and <code>custom/new-forward.cu</code> containes skeleton implementations for the CPU and GPU convolutions respectively. You can complete the project by modifying these two files only. <code>custom/cpu-new-forward.h</code> and <code>custom/gpu-new-forward.h</code> are the respective header files. You need not modify these files unless you need to declare your own functions.</p>
+<p>The code in <code>m1.cc</code>, <code>m2.cc</code>, <code>m3.cc</code> and <code>final.cc</code> are the top level files that are executed for each milestone. You should not be modifying these files.</p>
+<h2 id="license">License</h2>
+<p>NCSA/UIUC © 2020 <a href="https://cwpearson.github.io">Carl Pearson</a></p>
+<h2 id="contributors">Contributors</h2>
+<ul>
+<li><a href="https://cwpearson.github.io">Carl Pearson</a></li>
+<li><a href="https://github.com/msharmavikram/">Vikram Mailthody</a></li>
+<li>Andrew Schuh</li>
+<li>Abdul Dakkak</li>
+<li>Zaid Qureshi</li>
+<li>Rui Lan</li>
+<li>Zhicun Wan</li>
+<li>Ben Schreiber</li>
+<li>James Cyriac</li>
+</ul>
+
+</body>
+</html>
